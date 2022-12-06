@@ -1,24 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Workbook } from "@fortune-sheet/react";
+import "@fortune-sheet/react/dist/index.css";
+import data from "./data";
+import newData from "./newData";
 
 function App() {
+  const [state, setState] = React.useState<any>([data]);
+
+  const onSetNewSheets = () => {
+    setState([newData])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ width: '100%', height: "100%" }}>
+      <button onClick={onSetNewSheets}>Set New Sheets</button>
+      <Workbook data={state} />
     </div>
   );
 }
